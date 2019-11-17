@@ -18,7 +18,7 @@ public class ConversorDataService {
 			
 			dataValida(dataString);
 			data = LocalDateTime.parse(dataString, Constants.DATE_FORMATTER);
-			
+			System.out.println(data);
 			return data;
 		} catch (InvalidDataException e) {
 			e.printStackTrace();

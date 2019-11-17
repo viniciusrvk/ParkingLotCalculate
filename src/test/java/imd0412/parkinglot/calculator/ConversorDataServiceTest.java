@@ -25,7 +25,13 @@ public class ConversorDataServiceTest {
 	@Parameters(name = "{0}_ShouldReturn_{1}")
 	public static Collection<Object[]> buildData() {
 		return Arrays.asList(new Object[][] {
-			{ "2017.11.30 10:30", "Data valida"},
+			{ "2017.11.30 10:30", LocalDateTime.parse("2017.11.30 10:30", Constants.DATE_FORMATTER)},
+			{ "1970.01.01 00:00", LocalDateTime.parse("1970.01.01 00:00", Constants.DATE_FORMATTER)},
+			{ "1970.01.01 00:01", LocalDateTime.parse("1970.01.01 00:01", Constants.DATE_FORMATTER)},
+			{ "2019.12.31 23:58", LocalDateTime.parse("2019.12.31 23:58", Constants.DATE_FORMATTER)},
+			{ "2019.12.31 23:59", LocalDateTime.parse("2019.12.31 23:59", Constants.DATE_FORMATTER)},
+			{ "2012.02.29 00:00", LocalDateTime.parse("2012.02.29 00:00", Constants.DATE_FORMATTER)},
+			{ "2004.02.29 23:59", LocalDateTime.parse("2004.02.29 23:59", Constants.DATE_FORMATTER)},
 		});
 	}
 	
@@ -33,13 +39,13 @@ public class ConversorDataServiceTest {
 	public String data;
 	
 	@Parameter(1)
-	public String retorno;
+	public LocalDateTime retorno;
 	
 	@Test
 	public void test() {
 		
 		LocalDateTime dataTeste = ConversorDataService.converterString(data);
-		assertTrue(LocalDateTime.parse(data, Constants.DATE_FORMATTER).equals(dataTeste));
+		assertTrue(dataTeste.equals(retorno));
 		
 	}
 
