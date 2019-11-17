@@ -33,17 +33,30 @@ public class Calculator {
 		verificarCheckinCheckout(entrada, saida);
 		Float custo = calulcarCusto(entrada, saida, type);
 		
-		return null;
+		return custo;
 	}
 
 	private Float calulcarCusto(LocalDateTime entrada, LocalDateTime saida, ParkingLotType type) {
 		
 		Float custo = 0F;
 		
-		long horas = horasEstacionado(entrada, saida);
-		
+		long horasEstacionado = horasEstacionado(entrada, saida);
+		TermCostCalculator term = termCost(type);
+		custo = term.calcular(horasEstacionado);
 		
 		return custo;
+	}
+
+	private TermCostCalculator termCost(ParkingLotType type) {
+		
+		TermCostCalculator term = null;
+		switch (type) {
+			case ShortTerm :
+				term = new ShortTermCostCalculator();
+				break;
+		}
+		
+		return term;
 	}
 
 	private long minutosPassadoHoraAtual(LocalDateTime entrada, LocalDateTime saida) {
@@ -52,14 +65,15 @@ public class Calculator {
 
 	private long horasEstacionado(LocalDateTime entrada, LocalDateTime saida) {
 		
-		long minutosPassados = minutosPassadoHoraAtual(entrada, saida);
-		long horas = minutosPassados / 60;
 		
+		long horas = Duration.between(entrada, saida).toMinutes() / 60;
+		
+		long minutosPassados = minutosPassadoHoraAtual(entrada, saida);
 		if (minutosPassados > 0) {
 			horas++;	// Já passou o 1 minutos desde que completou a hora, então deve ser paga
 		}
 		
-		return minutosPassados / 60;
+		return horas;
 	}
 
 	private void verificarCheckinCheckout(LocalDateTime entrada, LocalDateTime saida) throws InvalidDataException {

@@ -19,7 +19,7 @@ import imd0412.parkinglot.ParkingLotType;
 @RunWith(Parameterized.class)
 public class CalculatorTest
 {
-	@Parameters(name = "{0}_ShouldReturn_{1}")
+	@Parameters(name = "{0}_{1}_ShouldReturn_{3}")
 	public static Collection<Object[]> buildData() {
 		return Arrays.asList(new Object[][] {
 			{ "2017.11.30 10:30", "2017.11.30 11:00", ParkingLotType.ShortTerm, 8F},
@@ -30,7 +30,8 @@ public class CalculatorTest
 			{ "2018.01.12 10:30", "2018.01.13 10:31", ParkingLotType.ShortTerm, 106F},		// 24 horas e 1 min = (8 + (25-1)*2 + 50)
 			{ "2019.01.12 10:30", "2019.01.16 07:15", ParkingLotType.ShortTerm, 342F},		// 3 dias, 20 horas e 45 minutos = (8 + ((93-1)*2) + 50 + 50 + 50)
 			{ "2019.01.01 10:30", "2019.01.08 10:30", ParkingLotType.ShortTerm, 692F},		// 7 dias = 8 + ((168-1)*2) + 7 * 50
-			{ "2019.01.01 10:30", "2019.01.08 10:31", ParkingLotType.ShortTerm, 724F},		// 7 dias e 1 minutos (8 + ((169-1)*2) + 7*50 + 30)
+			{ "2019.01.01 10:30", "2019.01.08 10:31", ParkingLotType.ShortTerm, 694F},		// 7 dias e 1 minutos = (8 + ((169-1)*2) + 7*50)
+			{ "2019.01.01 10:30", "2019.01.09 10:30", ParkingLotType.ShortTerm, 770F},		// 8 dias = (8 + ((169-1)*2) + 7*50 + 30)
 		});
 	}
 	
