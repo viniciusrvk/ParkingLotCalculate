@@ -1,28 +1,35 @@
 package imd0412.parkinglot.calculator;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
+import imd0412.parkinglot.Constants;
 import imd0412.parkinglot.exception.DateFormatException;
 import imd0412.parkinglot.exception.InvalidDataException;
 import imd0412.parkinglot.exception.InvalidDataType;
 
-public class CalculatorService {
+public class ConversorDataService {
 	
-	String formatoEntrada = "yyyy.MM.dd HH:mm";
-	
-	public LocalDate converterString(String dataString) throws DateFormatException, InvalidDataException {
+	public static LocalDateTime converterString(String dataString) {
 		
-		dataValida(dataString);
+		LocalDateTime data = null;
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatoEntrada);
-		LocalDate data = LocalDate.parse(dataString, formatter);
+		try {
+			
+			dataValida(dataString);
+			data = LocalDateTime.parse(dataString, Constants.DATE_FORMATTER);
+			
+			return data;
+		} catch (InvalidDataException e) {
+			e.printStackTrace();
+		} catch (DateFormatException e) {
+			e.printStackTrace();
+		}
 		
 		return data;
 	}
 	
-	public void dataValida(String dataString) throws InvalidDataException, DateFormatException {
+	public static void dataValida(String dataString) throws InvalidDataException, DateFormatException {
 		
 		estaNoFomato(dataString);
 		valoresValidos(dataString);
@@ -30,12 +37,11 @@ public class CalculatorService {
         
     }
 
-	private void estaNoFomato(String dataString) throws DateFormatException {
+	private static void estaNoFomato(String dataString) throws DateFormatException {
 		
 		try {
 			
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formatoEntrada);
-			LocalDate dataTeste = LocalDate.parse(dataString, formatter);
+			LocalDateTime.parse(dataString, Constants.DATE_FORMATTER);
 		
 		} catch (DateTimeParseException dataException) {
 			throw new DateFormatException();
@@ -43,7 +49,7 @@ public class CalculatorService {
 		
 	}
 
-	private void verificarDiasdosMes(String dataTeste) throws InvalidDataException {
+	private static void verificarDiasdosMes(String dataTeste) throws InvalidDataException {
 		
 		String data = dataTeste.split(" ")[0];
 		
@@ -69,7 +75,7 @@ public class CalculatorService {
 
 
 
-	private void valoresValidos(String dataTeste) throws InvalidDataException {
+	private static void valoresValidos(String dataTeste) throws InvalidDataException {
 		
 		String data = dataTeste.split(" ")[0];
 		
@@ -92,7 +98,7 @@ public class CalculatorService {
 
 
 
-	private boolean anoBissexto(int ano) {
+	private static boolean anoBissexto(int ano) {
 		
 		if (((ano % 4 == 0) && (ano % 100 != 0)) || (ano % 400 == 0)) {
 			return true;

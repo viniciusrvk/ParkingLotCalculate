@@ -1,6 +1,7 @@
 package imd0412.parkinglot.calculator;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import imd0412.parkinglot.ParkingLotType;
 import imd0412.parkinglot.exception.DateFormatException;
@@ -24,10 +25,8 @@ public class Calculator {
 	Float calculateParkingCost(String checkin, String checkout,
 			ParkingLotType type) throws DateFormatException, InvalidDataException {
 		
-		CalculatorService service = new CalculatorService();
-		
-		LocalDate dataEntrada = service.converterString(checkin);
-		LocalDate dataSaida = service.converterString(checkout);
+		LocalDateTime dataEntrada = ConversorDataService.converterString(checkin);
+		LocalDateTime dataSaida = ConversorDataService.converterString(checkout);
 		
 		return null;
 	}
