@@ -1,15 +1,11 @@
 package imd0412.parkinglot.calculator;
 
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import static org.hamcrest.CoreMatchers.*;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -44,8 +40,14 @@ public class ConversorDataServiceTest {
 	@Test
 	public void test() {
 		
-		LocalDateTime dataTeste = ConversorDataService.converterString(data);
-		assertTrue(dataTeste.equals(retorno));
+		
+		try {
+			LocalDateTime dataTeste = ConversorDataService.converterString(data);
+			assertTrue(dataTeste.equals(retorno));
+		} catch (Exception e) {
+			Assert.fail("Test Error.");
+		}
+		
 		
 	}
 

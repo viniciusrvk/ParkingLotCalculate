@@ -10,23 +10,18 @@ import imd0412.parkinglot.exception.InvalidDataType;
 
 public class ConversorDataService {
 	
-	public static LocalDateTime converterString(String dataString) {
+	public static final String FORMTO_INVALIDO = "formato da data não suportado";
+	
+	public static LocalDateTime converterString(String dataString) throws DateFormatException, InvalidDataException {
 		
 		LocalDateTime data = null;
 		
-		try {
-			
-			dataValida(dataString);
-			data = LocalDateTime.parse(dataString, Constants.DATE_FORMATTER);
-			System.out.println(data);
-			return data;
-		} catch (InvalidDataException e) {
-			e.printStackTrace();
-		} catch (DateFormatException e) {
-			e.printStackTrace();
-		}
+		dataValida(dataString);
+		data = LocalDateTime.parse(dataString, Constants.DATE_FORMATTER);
+		System.out.println(data);
 		
 		return data;
+
 	}
 	
 	public static void dataValida(String dataString) throws InvalidDataException, DateFormatException {
@@ -38,15 +33,11 @@ public class ConversorDataService {
     }
 
 	private static void estaNoFomato(String dataString) throws DateFormatException {
-		
 		try {
-			
-			LocalDateTime.parse(dataString, Constants.DATE_FORMATTER);
-		
-		} catch (DateTimeParseException dataException) {
-			throw new DateFormatException();
+		LocalDateTime.parse(dataString, Constants.DATE_FORMATTER);
+		} catch (DateTimeParseException e) {
+			throw new DateFormatException(FORMTO_INVALIDO);
 		}
-		
 	}
 
 	private static void verificarDiasdosMes(String dataTeste) throws InvalidDataException {
