@@ -9,7 +9,7 @@ public class Main
 	public static void main(String[] args)
 	{
 		final String checkin = "2016.04.08 12:30";
-		final String checkout = "2017.04.08 14:35";
+		final String checkout = "2017.04.08 14:31";
 
 		try
 		{
@@ -19,7 +19,7 @@ public class Main
 
 			System.out.printf("Checkin %s, Checkout %s\n", checkinTime, checkoutTime);
 
-			// Extrair dados do objeto data
+			// Extrair dados do objeto data 
 			int year = checkinTime.getYear();
 			int month = checkinTime.getMonth().getValue();
 			int dayOfMonth = checkinTime.getDayOfMonth();
@@ -33,6 +33,10 @@ public class Main
 			long days = duration.toDays();
 			long hours = duration.toHours();
 			long minutes = duration.toMinutes();
+			
+			hours = duration.toMinutes() / 24;
+			minutes = duration.toMinutes() % 24;
+			
 			System.out.printf("Permanência de: %d dias, ou %d horas, ou %d minutos.\n", days, hours, minutes);
 		}
 		catch (DateTimeParseException exc)

@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ CalculatorTest.class, ConversorDataServiceTest.class })
+@SuiteClasses({ CalculatorTest.class, ConversorDataServiceTest.class, ConversorDataServiceExceptionTest.class })
 public class AllTests {
 
 }

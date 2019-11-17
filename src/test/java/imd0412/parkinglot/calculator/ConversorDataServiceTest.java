@@ -38,8 +38,7 @@ public class ConversorDataServiceTest {
 	public LocalDateTime retorno;
 	
 	@Test
-	public void test() {
-		
+	public void test() {		
 		
 		try {
 			LocalDateTime dataTeste = ConversorDataService.converterString(data);
@@ -47,7 +46,6 @@ public class ConversorDataServiceTest {
 		} catch (Exception e) {
 			Assert.fail("Test Error.");
 		}
-		
 		
 	}
 
