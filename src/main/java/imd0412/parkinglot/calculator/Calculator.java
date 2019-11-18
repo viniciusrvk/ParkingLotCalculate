@@ -1,7 +1,6 @@
 package imd0412.parkinglot.calculator;
 
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import imd0412.parkinglot.ParkingLotType;
@@ -54,6 +53,9 @@ public class Calculator {
 			case ShortTerm :
 				term = new ShortTermCostCalculator();
 				break;
+			case VIP :
+				term = new VipTermCostCalculator();
+				break;
 		}
 		
 		return term;
@@ -64,8 +66,7 @@ public class Calculator {
 	}
 
 	private long horasEstacionado(LocalDateTime entrada, LocalDateTime saida) {
-		
-		
+
 		long horas = Duration.between(entrada, saida).toMinutes() / 60;
 		
 		long minutosPassados = minutosPassadoHoraAtual(entrada, saida);

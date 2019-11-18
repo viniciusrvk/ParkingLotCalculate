@@ -32,6 +32,13 @@ public class CalculatorTest
 			{ "2019.01.01 10:30", "2019.01.08 10:30", ParkingLotType.ShortTerm, 692F},		// 7 dias = 8 + ((168-1)*2) + 7 * 50
 			{ "2019.01.01 10:30", "2019.01.08 10:31", ParkingLotType.ShortTerm, 694F},		// 7 dias e 1 minutos = (8 + ((169-1)*2) + 7*50)
 			{ "2019.01.01 10:30", "2019.01.09 10:30", ParkingLotType.ShortTerm, 770F},		// 8 dias = (8 + ((169-1)*2) + 7*50 + 30)
+			
+			{ "2017.05.15 10:30", "2017.05.22 10:30", ParkingLotType.VIP, 500F},				// 7 dias = (500)
+			{ "2017.05.15 10:30", "2017.05.18 07:15", ParkingLotType.VIP, 500F},				// 7 dias 
+			{ "2017.05.15 10:30", "2017.05.22 10:31", ParkingLotType.VIP, 600F},				// 7 dias e um minuto = (500 + 100)
+			{ "2017.05.15 10:30", "2017.05.29 10:30", ParkingLotType.VIP, 1200F},				// 14 dias = (500 +700)
+			{ "2017.05.15 10:30", "2017.05.29 10:31", ParkingLotType.VIP, 1280F},				// 14 dias e um minuto = (500 + (100*7) + 80)
+			{ "2017.05.15 10:30", "2017.05.30 10:31", ParkingLotType.VIP, 1360F},				// 15 dias e um minuto = (500 + (100*7) + 80 + 80)
 		});
 	}
 	
