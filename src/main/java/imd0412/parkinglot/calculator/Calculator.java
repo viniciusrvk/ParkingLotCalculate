@@ -53,6 +53,9 @@ public class Calculator {
 			case ShortTerm :
 				term = new ShortTermCostCalculator();
 				break;
+			case LongTerm :
+				term = new LongTermCostCalculator();
+				break;
 			case VIP :
 				term = new VipTermCostCalculator();
 				break;

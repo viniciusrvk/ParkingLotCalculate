@@ -33,6 +33,16 @@ public class CalculatorTest
 			{ "2019.01.01 10:30", "2019.01.08 10:31", ParkingLotType.ShortTerm, 694F},		// 7 dias e 1 minutos = (8 + ((169-1)*2) + 7*50)
 			{ "2019.01.01 10:30", "2019.01.09 10:30", ParkingLotType.ShortTerm, 770F},		// 8 dias = (8 + ((169-1)*2) + 7*50 + 30)
 			
+			{ "2018.01.01 10:30", "2018.01.01 10:30", ParkingLotType.LongTerm, 70F},		//  0 horas = 70
+			{ "2018.01.01 10:30", "2018.01.02 10:30", ParkingLotType.LongTerm, 70F},		//  24 horas = 70
+			{ "2018.01.01 10:30", "2018.01.02 10:31", ParkingLotType.LongTerm, 120F},		//  24h e 1 min = 120
+			{ "2018.01.01 11:30", "2018.01.08 11:30", ParkingLotType.LongTerm, 370F},		//  24h + 6 dias  = 70 + 6*50
+			{ "2018.01.01 12:30", "2018.01.08 12:31", ParkingLotType.LongTerm, 400F},		//  7 dias e 1 min = 70 + 6*50 + 30
+			{ "2018.01.01 10:30", "2018.01.31 10:30", ParkingLotType.LongTerm, 1060F},		//  30 dias = 70 + 6+50 + 23*30
+			{ "2018.01.01 10:30", "2018.01.31 10:31", ParkingLotType.LongTerm, 1560F},		//  30 dias e 1 min = 70 + 6+50 + 23*30 + 500
+			
+			
+			
 			{ "2017.05.15 10:30", "2017.05.22 10:30", ParkingLotType.VIP, 500F},				// 7 dias = (500)
 			{ "2017.05.15 10:30", "2017.05.18 07:15", ParkingLotType.VIP, 500F},				// 7 dias 
 			{ "2017.05.15 10:30", "2017.05.22 10:31", ParkingLotType.VIP, 600F},				// 7 dias e um minuto = (500 + 100)
@@ -62,7 +72,7 @@ public class CalculatorTest
 			
 			Calculator calulator = new Calculator();
 			Float cost = calulator.calculateParkingCost(checkin, checkout, type);
-			assertThat(value, is(equalTo(cost)));
+			assertThat(cost, is(equalTo(value)));
 			
 		} catch (Exception e) {
 			Assert.fail("Test Error.");
