@@ -21,10 +21,6 @@ public class VipTermCostCalculator implements TermCostCalculator {
 				
 				extra += (((horasEstacionado-168)/24)*100);
 				
-				if ((horasEstacionado-168)%24 > 0) {
-					extra += 100;
-				}
-				
 			} else {
 				extra = 100F;
 			}
@@ -43,11 +39,7 @@ public class VipTermCostCalculator implements TermCostCalculator {
 			horasEstacionado -= 336;
 			
 			extra += (((horasEstacionado)/24)*80);
-			
-			if ((horasEstacionado)%24 > 0) {
-				extra += 80;
-			}
-			
+
 		}
 		
 		return extra;

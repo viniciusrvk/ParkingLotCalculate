@@ -37,8 +37,9 @@ public class CalculatorTest
 			{ "2017.05.15 10:30", "2017.05.18 07:15", ParkingLotType.VIP, 500F},				// 7 dias 
 			{ "2017.05.15 10:30", "2017.05.22 10:31", ParkingLotType.VIP, 600F},				// 7 dias e um minuto = (500 + 100)
 			{ "2017.05.15 10:30", "2017.05.29 10:30", ParkingLotType.VIP, 1200F},				// 14 dias = (500 +700)
-			{ "2017.05.15 10:30", "2017.05.29 10:31", ParkingLotType.VIP, 1280F},				// 14 dias e um minuto = (500 + (100*7) + 80)
-			{ "2017.05.15 10:30", "2017.05.30 10:31", ParkingLotType.VIP, 1360F},				// 15 dias e um minuto = (500 + (100*7) + 80 + 80)
+			{ "2017.05.15 10:30", "2017.05.29 10:31", ParkingLotType.VIP, 1200F},				// 14 dias e um minuto = (500 + (100*7) + 80)
+			{ "2017.05.15 10:30", "2017.05.30 10:31", ParkingLotType.VIP, 1280F},				// 15 dias e um minuto = (500 + (100*7) + 80)
+			{ "2017.05.15 10:30", "2017.05.31 10:30", ParkingLotType.VIP, 1360F},				// 16 dias = (500 + (100*7) + 80 +80)
 		});
 	}
 	
